@@ -14,7 +14,7 @@
 **Data Source:** The Bank Indessa's NPA has reached an all time high which after a careful analysis concluded that a majority of NPA was contributed by loan defaulters. There is an immediate need to restrict the can-be-loan defaulters to improvise the current scenario. The Bank have decided to apply data analysis to analyze the pattern of loan defaulters and machine learning to predict if the new customers can-be the new loan defualters.
 The data was collected by the Bank while performing due diligence on requested loan applications. The data is, however too messy to directly apply on machine learning models. Thus feature engineering is used to align the data.
 
-The dataset available had around 45 features and ~5,00,000 datapoints. However for training such a huge dataset I did not have enough resources, so I decided to use a random 30K data points.
+The dataset available had around 45 features and ~5,00,000 datapoints. However for training such a huge dataset I did not have enough resources, so I decided to use a random 50K data points with 50 features.
 
 ## Steps Involved
 
@@ -47,20 +47,20 @@ The steps followed in this particular dataset are:
 XGBoost is not sensitive to monotonic transformations of its features for the same reason that decision trees and random forests are not: the model only needs to pick "cut points" on features to split a node. Splits are not sensitive to monotonic transformations: defining a split on one scale has a corresponding split on the transformed scale.
 
 #### Data Cleanup
-Stripping datatype to numeric values: In this step the extra textual parts are striped off Convert the datatype to numeric type. Features where this technique is applied: term, emp_length, last_week_pay.
+* Stripping datatype to numeric values: In this step the extra textual parts are striped off Convert the datatype to numeric type. Features where this technique is applied: term, emp_length, last_week_pay.
 
-Categorical to Numerical: Further, categorical values are replaced with numerical for enmp_length, purpose.
+* Categorical to Numerical: Further, categorical values are replaced with numerical for enmp_length, purpose.
 
-Common 'Other' string for categories that need not be considered: All the cells with values 'OTHER', 'NONE', 'ANY', 'other', 'major_purchase', 'small_business', 'medical','car', 'moving', 'vacation', 'house', 'wedding', 'renewable_energy', 'educational' are replaced with a common 'Other' string.
+* Common 'Other' string for categories that need not be considered: All the cells with values 'OTHER', 'NONE', 'ANY', 'other', 'major_purchase', 'small_business', 'medical','car', 'moving', 'vacation', 'house', 'wedding', 'renewable_energy', 'educational' are replaced with a common 'Other' string.
 
-Dropping unncessary features: Dropping 'member_id', 'batch_enrolled', 'sub_grade', 'emp_title', 'pymnt_plan', 'desc', 'title', 'zip_code', 'addr_state', 'application_type', 'verification_status_joint' features from the dataframe.
+* Dropping unncessary features: Dropping 'member_id', 'batch_enrolled', 'sub_grade', 'emp_title', 'pymnt_plan', 'desc', 'title', 'zip_code', 'addr_state', 'application_type', 'verification_status_joint' features from the dataframe.
 
 #### Dealing with Missing Values
-Features where ***median imputaion*** is applied: emp_length, annual_inc, open_acc, pub_rec, revol_util, total_acc, mths_since_last_delinq, mths_since_last_record, tot_coll_amt, tot_cur_bal, total_rev_hi_lim
+* Features where ***median imputaion*** is applied: emp_length, annual_inc, open_acc, pub_rec, revol_util, total_acc, mths_since_last_delinq, mths_since_last_record, tot_coll_amt, tot_cur_bal, total_rev_hi_lim
 
-Features where ***zero imputaion*** is applied: delinq_2yrs, inq_last_6mths, collections_12_mths_ex_med, mths_since_last_major_derog, acc_now_delinq
+* Features where ***zero imputaion*** is applied: delinq_2yrs, inq_last_6mths, collections_12_mths_ex_med, mths_since_last_major_derog, acc_now_delinq
 
-Features where ***mean imputaion*** is applied: total_rev_hi_lim, int_rate, annual_inc, dti, delinq_2yrs, inq_last_6mths, open_acc, revol_bal, revol_util, total_acc, total_rec_int, tot_cur_bal, total_rec_late_fee, recoveries, collection_recovery_fee, collections_12_mths_ex_med, acc_now_delinq, funded_amnt_inv
+* Features where ***mean imputaion*** is applied: total_rev_hi_lim, int_rate, annual_inc, dti, delinq_2yrs, inq_last_6mths, open_acc, revol_bal, revol_util, total_acc, total_rec_int, tot_cur_bal, total_rec_late_fee, recoveries, collection_recovery_fee, collections_12_mths_ex_med, acc_now_delinq, funded_amnt_inv
 
 #### One Hot Encoding:
 One hot encoding is one method of converting data to prepare it for an algorithm and get a better prediction. With one-hot, we convert each categorical value into a new categorical column and assign a binary value of 1 or 0 to those columns. Each integer value is represented as a binary vector. 
@@ -82,4 +82,4 @@ The best parameters that are selected by RandomizedSearchCV: {'n_estimators': 70
 All the models were compared amongst each other using the following as performance metrics: Accuracy, Precision, Recall and F1 Score.
 Since F1 Score is the Harmonic mean of precision and recall, it takes into account both sensitivity and specificity. Thus the major performance metrics here would be F1 Score. Clearly Decision Tree has the best F1 Score followed by Gradient Boosting.
 
-The best Accuracy Score is: 81.5% (Random Forest Classifier)
+The best Accuracy Score is: 83.41% (Random Forest Classifier)
