@@ -26,7 +26,6 @@ Exploratory data analysis (EDA) is used by data scientists to analyze and invest
 EDA is primarily used to see what data can reveal beyond the formal modeling or hypothesis testing task and provides a provides a better understanding of data set variables and the relationships between them. It can also help determine if the statistical techniques you are considering for data analysis are appropriate.
 
 ![0](https://user-images.githubusercontent.com/109594714/185826421-30e48005-a6ef-4487-b99c-42074588b08c.png)
-![2](https://user-images.githubusercontent.com/109594714/185826429-df320012-5347-4247-86d3-0fdd50060b6d.png)
 
 
 ### Feature Engineering
